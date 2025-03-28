@@ -1,4 +1,4 @@
-## Trabalho Prático Engenharia de Software
+## Trabalho Prático Engenharia de Software (DCC Hub)
 
 ## Membros e Papéis
 - Ana Luisa Messias Ferreira Mendes: UX/UI designer, Dev Front-end
@@ -8,7 +8,7 @@
 
 
 ## Escopo
-O sistema é uma plataforma web que visa facilitar a localização de informações das disciplinas ofertadas pelo DCC, do respectivo semestre, em uma única página.
+O sistema DCC Hub é uma plataforma web que visa facilitar a localização de informações das disciplinas ofertadas pelo DCC, do respectivo semestre, em uma única página, eliminando a necessidade de buscar complementos de uma informação em sites diferentes. 
 Como por exemplo, uma lista única que possui: disciplina, turma, horário, professor e a sala em que a aula será ministrada.
 
 
