@@ -54,13 +54,17 @@ Como por exemplo, uma lista única que possui: disciplina, turma, horário, prof
 
 1. Cadastrar, editar e deletar perfil de administrador na plataforma
    - Tarefas e responsáveis:
+     Criar protótipo e implementar tela de login [Ana]
 
 2. Administrador pode Cadastrar, editar ou remover uma disciplina e suas informações
    - Tarefas e responsáveis:
+     Criar protótipo e implementar tela de cadastro e edição de disciplinas [Ana]
 
 3. Cadastrar, editar e deletar perfil de usuário na plataforma
    - Tarefas e responsáveis:
+     Criar protótipo e implementar tela de CRUD de usuário [Ana]
 
 4. Visualizar e filtrar a lista de disciplinas ofertadas, bem como as turmas, horários, professor e sala de aula
    - Tarefas e responsáveis:
+     Criar protótipo e implementar tela principal das disciplinas [Ana]
   
