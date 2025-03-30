@@ -55,34 +55,51 @@ Como por exemplo, uma lista única que possui: disciplina, turma, horário, prof
 1. Cadastrar, editar e deletar perfil de administrador na plataforma
    - Tarefas e responsáveis:
      Criar protótipo e implementar tela de login [Ana]
+     
      Instalar e configurar banco de dados e definir modelo das primeiras tabelas
+     
      Instalar e configurar Django
-     Criar modelo de usuário administrador no banco de dados 
+     
+     Criar modelo de usuário administrador no banco de dados
+     
      Criar autenticação e autorização para administradores ( Django Auth)
+     
      Implementar endpoints para CRUD do perfil do administrador [Náthally]
+     
      Criar middleware para restringir acesso a funcionalidades admnistrativas
 
 2. Administrador pode Cadastrar, editar ou remover uma disciplina e suas informações
    - Tarefas e responsáveis:
      Criar protótipo e implementar tela de cadastro e edição de disciplinas [Ana]
+     
      Criar modelos de disciplinas no banco de dados
+     
      Implementar endpoints para CRUD de disciplinas [Náthally]
+     
      Criar validações para garantir que os dados das disciplinas estão corretos
+     
      Implementar relacionamento entre disciplina e professor
 
 3. Cadastrar, editar e deletar perfil de usuário na plataforma
    - Tarefas e responsáveis:
      Criar protótipo e implementar tela de CRUD de usuário [Ana]
+     
      Criar modelo de usuário comum no banco de dados
+     
      Implmentar autenticação e autorização para usuários comuns
+     
      Criar endpoints para CRUD do perfil do usuário [Náthally]
  
 4. Visualizar e filtrar a lista de disciplinas ofertadas, bem como as turmas, horários, professor e sala de aula
    - Tarefas e responsáveis:
      Criar protótipo e implementar tela principal das disciplinas [Ana]
-     Vincular usuário a disciplina 
-     Criar endpoint para listar todas as disciplinas 
+     
+     Vincular usuário a disciplina
+     
+     Criar endpoint para listar todas as disciplinas
+     
      Implementar filtros para busca por disciplina, professor e horário [Náthally]
+     
      Criar relacionamento entre usuário e disciplinas matriculadas 
      
   
