@@ -56,13 +56,13 @@ Como por exemplo, uma lista única que possui: disciplina, turma, horário, prof
    - Tarefas e responsáveis:
      Criar protótipo e implementar tela de login [Ana]
      
-     Instalar e configurar banco de dados e definir modelo das primeiras tabelas
+     Instalar e configurar banco de dados e definir modelo das primeiras tabelas [ Gabriel]
      
-     Instalar e configurar Django
+     Instalar e configurar Django [Gabriel]
      
-     Criar modelo de usuário administrador no banco de dados
+     Criar modelo de usuário administrador no banco de dados [Matheus]
      
-     Criar autenticação e autorização para administradores ( Django Auth)
+     Criar autenticação e autorização para administradores ( Django Auth) [Matheus]
      
      Implementar endpoints para CRUD do perfil do administrador [Náthally]
      
@@ -72,21 +72,21 @@ Como por exemplo, uma lista única que possui: disciplina, turma, horário, prof
    - Tarefas e responsáveis:
      Criar protótipo e implementar tela de cadastro e edição de disciplinas [Ana]
      
-     Criar modelos de disciplinas no banco de dados
+     Criar modelos de disciplinas no banco de dados [Náthally]
      
      Implementar endpoints para CRUD de disciplinas [Náthally]
      
-     Criar validações para garantir que os dados das disciplinas estão corretos
+     Criar validações para garantir que os dados das disciplinas estão corretos [Matheus]
      
-     Implementar relacionamento entre disciplina e professor
+     Implementar relacionamento entre disciplina e professor [ Gabriel]
 
 3. Cadastrar, editar e deletar perfil de usuário na plataforma
    - Tarefas e responsáveis:
      Criar protótipo e implementar tela de CRUD de usuário [Ana]
      
-     Criar modelo de usuário comum no banco de dados
+     Criar modelo de usuário comum no banco de dados [Gabriel]
      
-     Implmentar autenticação e autorização para usuários comuns
+     Implmentar autenticação e autorização para usuários comuns [Matheus]
      
      Criar endpoints para CRUD do perfil do usuário [Náthally]
  
@@ -94,12 +94,12 @@ Como por exemplo, uma lista única que possui: disciplina, turma, horário, prof
    - Tarefas e responsáveis:
      Criar protótipo e implementar tela principal das disciplinas [Ana]
      
-     Vincular usuário a disciplina
+     Vincular usuário a disciplina [ Gabriel]
      
-     Criar endpoint para listar todas as disciplinas
+     Criar endpoint para listar todas as disciplinas [Náthally]
      
      Implementar filtros para busca por disciplina, professor e horário [Náthally]
      
-     Criar relacionamento entre usuário e disciplinas matriculadas 
+     Criar relacionamento entre usuário e disciplinas matriculadas [Matheus]
      
   
