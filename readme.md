@@ -14,7 +14,7 @@ Como por exemplo, uma lista única que possui: disciplina, turma, horário, prof
 
 ## Figma
 
-> [Link para o Figma](https://www.figma.com/design/npE0wHvBZicmdVGks0u8mr/DCC-Hub---Engenharia-de-Software?node-id=1503-193&t=nGQbo2HlObO2lEQ0-1)
+> [Link para o Figma](https://www.figma.com/design/npE0wHvBZicmdVGks0u8mr/DCC-Hub---Engenharia-de-Software?node-id=1503-192&t=nGQbo2HlObO2lEQ0-1)
 
 ## Tecnologias
 
