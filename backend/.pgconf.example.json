@@ -1,0 +1,7 @@
+{
+  "HOST": "localhost",
+  "PORT": 5432,
+  "USER": "insira o seu user aqui",
+  "PASSWORD": "insira a senha do seu user aqui",
+  "NAME": "insira o nome od banco de dados aqui"
+}
