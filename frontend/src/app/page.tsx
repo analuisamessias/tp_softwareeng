@@ -1,8 +1,10 @@
-export default async function HomePage() {
+import { LoginForm } from '../components/LoginForm/LoginForm';
+import { Auth } from '../templates/Auth/Auth';
+
+export default async function LoginPage() {
 	return (
-		<div>
-			<title>Disciplinas DCC</title>
-			<h1>Seja bem vindo a parte de Disciplinas</h1>
-		</div>
+		<Auth>
+			<LoginForm />
+		</Auth>
 	);
 }
