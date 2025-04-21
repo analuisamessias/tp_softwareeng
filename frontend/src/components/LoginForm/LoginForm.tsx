@@ -1,21 +1,29 @@
+'use client';
+
 import { Auth } from '../../templates/Auth/Auth';
+import React from 'react';
+import {
+	Container,
+	LeftSection,
+	RightSection,
+	Logo,
+	Title,
+	Form,
+	Input,
+	Button,
+	LinkText,
+} from './LoginForm.styles';
 
-export type LoginFormProps = {};
-
-export const LoginForm = ({}: LoginFormProps) => {
+export const LoginForm = () => {
 	return (
 		<Auth>
-			<div>
-				<h2>Insira suas credenciais</h2>
-			</div>
-
-			<form>
-				<label htmlFor="email">Email</label>
-				<input type="email" id="email" name="email" required />
-				<label htmlFor="password">Senha</label>
-				<input type="password" id="password" name="password" required />
-				<button type="submit">Entrar</button>
-			</form>
+			<Title>Bem vindo(a) ao portal do DCC HUB</Title>
+			<Form>
+				<Input type="email" placeholder="E-mail" />
+				<Input type="password" placeholder="Senha" />
+				<Button>ENTRAR</Button>
+				<LinkText href="./auth/register">Cadastre-se no DCC HUB</LinkText>
+			</Form>
 		</Auth>
 	);
 };
