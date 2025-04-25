@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import { Epilogue } from 'next/font/google';
+import GlobalStyle from '../styles/global';
 
 const epilogue = Epilogue({
 	weight: ['100', '400', '500', '600', '700', '800'],
@@ -18,7 +19,10 @@ export default function RootLayout({
 }) {
 	return (
 		<html lang="en">
-			<body>{children}</body>
+			<body>
+				<GlobalStyle />
+				{children}
+			</body>
 		</html>
 	);
 }
