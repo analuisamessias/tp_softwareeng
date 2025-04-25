@@ -21,7 +21,7 @@ export const Logo = styled.img`
 export const RightSection = styled.div`
 	flex: 1;
 	background-color: cleanWhite;
-	padding: 5.7rem;
+	padding: 6.73rem;
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
