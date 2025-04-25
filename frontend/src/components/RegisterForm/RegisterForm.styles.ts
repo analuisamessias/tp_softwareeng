@@ -21,7 +21,7 @@ export const Logo = styled.img`
 export const RightSection = styled.div`
 	flex: 1;
 	background-color: cleanWhite;
-	padding: 6.73rem;
+	padding: 1rem;
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
@@ -30,8 +30,8 @@ export const RightSection = styled.div`
 
 export const Title = styled.h1`
 	color: #0f2849;
-	font-size: 1.8rem;
-	margin-bottom: 3rem;
+	font-size: 1.6rem;
+	margin-bottom: 1.5rem;
 	text-align: center;
 	font-family: 'Barlow', sans-serif;
 	font-weight: 700;
@@ -40,12 +40,12 @@ export const Title = styled.h1`
 export const Form = styled.form`
 	display: flex;
 	flex-direction: column;
-	width: 300px;
+	width: 400px;
 	gap: 1rem;
 `;
 
 export const Input = styled.input`
-	padding: 0.75rem;
+	padding: 0.5rem;
 	border: 1px solid #ccc;
 	border-radius: 6px;
 	font-size: 1rem;
