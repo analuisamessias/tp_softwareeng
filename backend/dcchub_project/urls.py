@@ -16,7 +16,10 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+#from dcchub_app.views import test_view 
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('api/', include('dcchub_app.urls')),
+   # path('test/', test_view, name='test'),
 ]
