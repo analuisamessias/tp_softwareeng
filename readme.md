@@ -87,4 +87,4 @@ Como por exemplo, uma lista única que possui: disciplina, turma, horário, prof
      - Vincular usuário a disciplina [Matheus]
      - Criar endpoint para listar todas as disciplinas [Matheus]
      - Implementar filtros para busca por disciplina, professor e horário [Náthally]
-     - Criar relacionamento entre usuário e disciplinas matriculadas [Náthally]
+     
