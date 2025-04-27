@@ -5,7 +5,7 @@ from .views import AdminUserViewSet, UserViewSet, DisciplinaViewSet
 router = DefaultRouter()
 router.register(r'admin-users', AdminUserViewSet, basename='admin-users')
 router.register(r'users', UserViewSet, basename='users')
-router.register(r'disciplines', DisciplinaViewSet, basename='disciplines')
+router.register(r'disciplines', DisciplinaViewSet, basename='disciplines') 
 
 urlpatterns = [
     path('', include(router.urls)),
