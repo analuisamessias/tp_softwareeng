@@ -2,15 +2,15 @@ import { ReactNode } from 'react';
 import {
 	LeftSection,
 	RightSection,
-} from '../../components/LoginForm/LoginForm.styles';
+} from '../../components/RegisterForm/RegisterForm.styles';
 import Image from 'next/image';
-import { Wrapper, Content, TopBar, BottomBar } from './Auth.styles';
+import { Wrapper, Content, TopBar, BottomBar } from './Register.styles';
 
-type AuthProps = {
+type RegisterProps = {
 	children: ReactNode;
 };
 
-export const Auth = ({ children }: AuthProps) => {
+export const Register = ({ children }: RegisterProps) => {
 	return (
 		<Wrapper>
 			<TopBar />

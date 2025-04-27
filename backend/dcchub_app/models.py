@@ -1,7 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager, PermissionsMixin
 
-class UserManager(BaseUserManager): # gerado apenas pra teste
+class UserManager(BaseUserManager): 
     def create_user(self, email, senha=None, **extra_fields):
         if not email:
             raise ValueError('O email deve ser informado.')
