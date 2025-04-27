@@ -2,7 +2,7 @@ from rest_framework import viewsets
 from .models import User, Disciplina
 from .serializers import AdminUserSerializer, UserSerializer, DisciplinaSerializer
 
-"""class AdminUserViewSet(viewsets.ModelViewSet):
+class AdminUserViewSet(viewsets.ModelViewSet):
     queryset = User.objects.filter(is_staff=True)
     serializer_class = AdminUserSerializer
 
@@ -12,4 +12,4 @@ class UserViewSet(viewsets.ModelViewSet):
 
 class DisciplinaViewSet(viewsets.ModelViewSet):
     queryset = Disciplina.objects.all()
-    serializer_class = DisciplinaSerializer """
+    serializer_class = DisciplinaSerializer

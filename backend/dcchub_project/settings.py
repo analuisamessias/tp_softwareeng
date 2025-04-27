@@ -30,7 +30,7 @@ ALLOWED_HOSTS = []
 
 # Application definition
 
-AUTH_USER_MODEL = 'dcchub_app.User'  #substituir para o gabriel fazer a parte dele
+AUTH_USER_MODEL = 'dcchub_app.User'
 
 
 INSTALLED_APPS = [
