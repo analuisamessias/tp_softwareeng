@@ -16,20 +16,31 @@ export const TopBarContainer = styled.div`
 	`}
 `;
 
-export const Button = styled.button`
+export const ExitButton = styled.button`
 	${({ theme }) => css`
 		background-color: #0f2849;
 		color: white;
-		padding: 0.5rem;
+		font-size: 1.5rem;
+		align-items: center;
 		border: none;
+		cursor: pointer;
+		transition: background-color 0.3s;
 	`}
+	&:hover {
+		background-color: #163d6b;
+	}
 `;
 
-export const button = styled.button`
+export const MenuButton = styled.button`
 	${({ theme }) => css`
 		background-color: #0f2849;
 		color: white;
-		padding: 0.75rem;
+		font-size: 1.5rem;
 		border: none;
+		cursor: pointer;
+		transition: background-color 0.3s;
 	`}
+	&:hover {
+		background-color: #163d6b;
+	}
 `;
