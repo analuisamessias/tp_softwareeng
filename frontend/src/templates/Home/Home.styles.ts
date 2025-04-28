@@ -33,18 +33,32 @@ export const WelcomeText = styled.h2`
 	font-weight: 600;
 `;
 
+// Barra de pesquisa
 export const SearchInput = styled.input`
 	padding: 0 20px;
 	border: 1px solid #ccc;
 	border-radius: 10px;
-	font-size: 0.8rem;
+	font-size: 0.9rem;
 	width: 450px;
 	height: 40px;
 	margin-top: 20px;
 	margin-bottom: 20px;
 	outline: none;
+	color: #000000;
 `;
 
+export const TextSection = styled.div`
+	display: flex;
+	flex-direction: column;
+`;
+
+export const SearchSection = styled.div`
+	display: flex;
+	flex-direction: column;
+	margin-top: 35px;
+`;
+
+// Parte dos Filtros
 export const FiltersContainer = styled.div`
 	display: flex;
 	gap: 40px;
@@ -67,13 +81,8 @@ export const FilterSelect = styled.select`
 	}
 `;
 
-export const TextSection = styled.div`
-	display: flex;
-	flex-direction: column;
-`;
-
-export const SearchSection = styled.div`
-	display: flex;
-	flex-direction: column;
-	margin-top: 35px;
+// Parte da Tabela
+export const TableContainer = styled.div`
+	margin-top: 40px;
+	overflow-x: auto;
 `;
