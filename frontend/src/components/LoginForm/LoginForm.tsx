@@ -2,17 +2,7 @@
 
 import { Auth } from '../../templates/Auth/Auth';
 import React from 'react';
-import {
-	Container,
-	LeftSection,
-	RightSection,
-	Logo,
-	Title,
-	Form,
-	Input,
-	Button,
-	LinkText,
-} from './LoginForm.styles';
+import { Title, Form, Input, Button, LinkText } from './LoginForm.styles';
 
 export const LoginForm = () => {
 	return (
