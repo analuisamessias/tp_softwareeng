@@ -1,17 +1,7 @@
 'use client';
 
 import React from 'react';
-import {
-	Container,
-	LeftSection,
-	RightSection,
-	Logo,
-	Title,
-	Form,
-	Input,
-	Button,
-	LinkText,
-} from './RegisterForm.styles';
+import { Title, Form, Input, Button, LinkText } from './RegisterForm.styles';
 import { Register } from '../../templates/Register/Register';
 
 export const RegisterForm = () => {
@@ -32,5 +22,3 @@ export const RegisterForm = () => {
 		</Register>
 	);
 };
-
-//CRIAR FORMULÁRIO DE CADASTRO
