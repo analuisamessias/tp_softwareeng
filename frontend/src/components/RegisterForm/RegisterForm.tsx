@@ -32,5 +32,3 @@ export const RegisterForm = () => {
 		</Register>
 	);
 };
-
-//CRIAR FORMULÁRIO DE CADASTRO

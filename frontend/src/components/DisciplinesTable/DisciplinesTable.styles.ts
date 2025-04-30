@@ -3,6 +3,7 @@ import styled from 'styled-components';
 export const TableContainer = styled.div`
 	margin-top: 40px;
 	overflow-x: auto;
+	margin-left: 40px;
 `;
 
 export const StyledTable = styled.table`
@@ -21,7 +22,7 @@ export const TableRow = styled.tr`
 `;
 
 export const TableCell = styled.td`
-	padding: 10px 10px 10px 10px;
+	padding: 10px 20px 10px 20px;
 	text-align: center;
 	font-size: 0.95rem;
 	font-weight: 100;
