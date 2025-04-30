@@ -13,7 +13,8 @@ import {
 } from './Home.styles';
 import { ExitButton, MenuButton } from '../../components/TopBar/TopBar.styles';
 import { DisciplinesTable } from '../../components/DisciplinesTable/DisciplinesTable';
-import { IoMdClose, IoMdMenu } from 'react-icons/io';
+import { IoMdClose } from 'react-icons/io';
+import { LuUserPen } from 'react-icons/lu';
 
 export type HomeProps = {};
 
@@ -61,9 +62,11 @@ export const Home = ({}: HomeProps) => {
 						<IoMdClose size={32} />
 					</ExitButton>
 				</a>
-				<MenuButton>
-					<IoMdMenu size={32} />
-				</MenuButton>
+				<a href="/userconfig">
+					<MenuButton>
+						<LuUserPen size={32} />
+					</MenuButton>
+				</a>
 			</TopBarContainer>
 
 			<ContentContainer>
