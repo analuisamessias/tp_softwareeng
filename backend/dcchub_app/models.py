@@ -2,24 +2,24 @@ from django.db import models
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager, PermissionsMixin
 
 class UserManager(BaseUserManager): 
-    def create_user(self, email, senha=None, **extra_fields):
+    def create_user(self, email, password=None, **extra_fields):
         if not email:
             raise ValueError('O email deve ser informado.')
         email = self.normalize_email(email)
         user = self.model(email=email, **extra_fields)
-        user.set_password(senha)
+        user.set_password(password)
         user.save(using=self._db)
         return user
 
-    def create_superuser(self, email, senha=None, **extra_fields):
+    def create_superuser(self, email, password=None, **extra_fields):
         extra_fields.setdefault('is_staff', True)
         extra_fields.setdefault('is_superuser', True)
 
-        return self.create_user(email, senha, **extra_fields)
+        return self.create_user(email, password, **extra_fields)
 
 class User(AbstractBaseUser, PermissionsMixin):
     id = models.AutoField(primary_key=True)
-    senha = models.CharField(max_length=128)  # A senha será criptografada
+    # password = models.CharField(max_length=128)  # A senha será criptografada
     email = models.EmailField(unique=True)
     nome = models.CharField(max_length=255)
     photo = models.ImageField(upload_to='profile_photos/', null=True, blank=True)
