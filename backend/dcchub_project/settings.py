@@ -41,7 +41,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
-    'dcchub_app'
+    'dcchub_app',
+    'django_filters'
 ]
 
 MIDDLEWARE = [
