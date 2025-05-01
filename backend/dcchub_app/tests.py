@@ -4,7 +4,7 @@ from django.test import TestCase
 from django.urls import reverse
 from rest_framework.test import APIClient
 from rest_framework import status
-from .models import User, Disciplina
+from .models import User, Disciplina, Professor
 
 class EndpointsTestCase(TestCase):
     def setUp(self):
@@ -21,6 +21,11 @@ class EndpointsTestCase(TestCase):
             nome='Usuário Normal',
             senha='senha123'
         )
+
+        # Criar um professor
+        self.professor = Professor.objects.create(
+            nome='Professor Exemplo'
+        )
         
         # Criar uma disciplina
         self.disciplina = Disciplina.objects.create(
@@ -31,7 +36,7 @@ class EndpointsTestCase(TestCase):
             inicio='08:00',
             fim='10:00',
             dias='Segunda,Quarta',
-            professor='Professor Exemplo'
+            professor=self.professor
         )
         
         # Cliente para fazer requisições
@@ -55,7 +60,7 @@ class EndpointsTestCase(TestCase):
             'inicio': '10:00',
             'fim': '12:00',
             'dias': 'Terça,Quinta',
-            'professor': 'Professor Programação'
+            'professor': self.professor.id
         }
         
         response = self.client.post('/api/disciplines/', nova_disciplina, format='json')
@@ -73,7 +78,7 @@ class EndpointsTestCase(TestCase):
             'inicio': '14:00',
             'fim': '16:00',
             'dias': 'Segunda,Quarta',
-            'professor': 'Professor Algoritmos'
+            'professor': self.professor.id
         }
         
         response = self.client.post('/api/disciplines/', nova_disciplina, format='json')
