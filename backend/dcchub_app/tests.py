@@ -4,7 +4,7 @@ from django.test import TestCase
 from django.urls import reverse
 from rest_framework.test import APIClient
 from rest_framework import status
-from .models import User, Disciplina
+from .models import User, Disciplina, Professor
 
 class EndpointsTestCase(TestCase):
     def setUp(self):
@@ -21,6 +21,14 @@ class EndpointsTestCase(TestCase):
             nome='Usuário Normal',
             senha='senha123'
         )
+
+        self.professor = Professor.objects.create(
+            nome='Professor Exemplo 1'
+        )
+
+        self.professor2 = Professor.objects.create(
+            nome='Professor Exemplo 2'
+        )
         
         # Criar uma disciplina
         self.disciplina = Disciplina.objects.create(
@@ -31,7 +39,7 @@ class EndpointsTestCase(TestCase):
             inicio='08:00',
             fim='10:00',
             dias='Segunda,Quarta',
-            professor='Professor Exemplo'
+            professor=self.professor
         )
         
         # Cliente para fazer requisições
@@ -55,7 +63,7 @@ class EndpointsTestCase(TestCase):
             'inicio': '10:00',
             'fim': '12:00',
             'dias': 'Terça,Quinta',
-            'professor': 'Professor Programação'
+            'professor': self.professor.id
         }
         
         response = self.client.post('/api/disciplines/', nova_disciplina, format='json')
@@ -73,10 +81,59 @@ class EndpointsTestCase(TestCase):
             'inicio': '14:00',
             'fim': '16:00',
             'dias': 'Segunda,Quarta',
-            'professor': 'Professor Algoritmos'
+            'professor': self.professor.id
         }
         
         response = self.client.post('/api/disciplines/', nova_disciplina, format='json')
         self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)
+
+    def test_listar_professores(self):
+        """Qualquer usuário pode listar professores"""
+        response = self.client.get('/api/professores/')
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.assertEqual(len(response.data), 2)
+
+    def test_criar_professor_como_superuser(self):
+        """Apenas admin pode criar professor"""
+        self.client.force_authenticate(user=self.superuser)
+        
+        novo_professor = {
+            'nome': 'Professor Novo'
+        }
+        
+        response = self.client.post('/api/professores/', novo_professor, format='json')
+        self.assertEqual(response.status_code, status.HTTP_201_CREATED)
+
+    def test_criar_professor_como_usuario_comum(self):
+        """Usuário comum não pode criar professor"""
+        self.client.force_authenticate(user=self.user)
+        
+        novo_professor = {
+            'nome': 'Professor Novo'
+        }
+        
+        response = self.client.post('/api/professores/', novo_professor, format='json')
+        self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)
+
+    def test_atualizar_professor_como_superuser(self):
+        """Apenas admin pode atualizar professor"""
+        self.client.force_authenticate(user=self.superuser)
+        
+        professor_atualizado = {
+            'nome': 'Professor Atualizado'
+        }
+        
+        response = self.client.put(f'/api/professores/{self.professor.id}/', professor_atualizado, format='json')
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.professor.refresh_from_db()
+        self.assertEqual(self.professor.nome, 'Professor Atualizado')
+
+    def test_deletar_professor_como_superuser(self):
+        """Apenas admin pode deletar professor"""
+        self.client.force_authenticate(user=self.superuser)
+        
+        response = self.client.delete(f'/api/professores/{self.professor.id}/')
+        self.assertEqual(response.status_code, status.HTTP_204_NO_CONTENT)
+        self.assertFalse(Professor.objects.filter(id=self.professor.id).exists())    
 
 # Create your tests here.

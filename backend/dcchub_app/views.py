@@ -1,8 +1,8 @@
 from rest_framework import viewsets, permissions
 from rest_framework.permissions import IsAuthenticated, IsAdminUser
-from .models import User, Disciplina
+from .models import User, Disciplina, Professor
 from django.http import JsonResponse
-from .serializers import AdminUserSerializer, UserSerializer, DisciplinaSerializer
+from .serializers import AdminUserSerializer, UserSerializer, DisciplinaSerializer, ProfessorSerializer
 
 class IsAdminOrSuperUser(permissions.BasePermission):
     def has_permission(self, request, view):
@@ -33,6 +33,17 @@ class DisciplinaViewSet(viewsets.ModelViewSet):
             return []
         # Somente admin pode criar, atualizar, excluir
         return [IsAdminUser()]
+    
+class ProfessorViewSet(viewsets.ModelViewSet):
+    queryset = Professor.objects.all()
+    serializer_class = ProfessorSerializer
 
+    def get_permissions(self):
+        if self.action in ['list', 'retrieve']:
+            # Qualquer pessoa pode listar ou ver detalhes de professores
+            return []
+        # Somente admin pode criar, atualizar, excluir
+        return [IsAdminUser()]
+    
 def test_view(request):
     return JsonResponse({"message": "API funcionando!"})

@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import User, Disciplina
+from .models import User, Disciplina, Professor
 from django.conf import settings
 
 class AdminUserSerializer(serializers.ModelSerializer):
@@ -57,3 +57,8 @@ class DisciplinaSerializer(serializers.ModelSerializer):
     class Meta:
         model = Disciplina
         fields = '__all__'
+
+class ProfessorSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Professor
+        fields = ['id', 'nome']
