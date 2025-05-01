@@ -21,5 +21,6 @@ from django.urls import path, include
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/', include('dcchub_app.urls')),
+    path('api-auth/', include('rest_framework.urls')),
    # path('test/', test_view, name='test'),
 ]
