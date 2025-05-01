@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import { Epilogue } from 'next/font/google';
 import GlobalStyle from '../styles/global';
+import StyledComponentsRegistry from '../lib/registry';
 
 const epilogue = Epilogue({
 	weight: ['100', '400', '500', '600', '700', '800'],
@@ -18,10 +19,12 @@ export default function RootLayout({
 	children: React.ReactNode;
 }) {
 	return (
-		<html lang="en">
+		<html lang="pt-BR">
 			<body>
-				<GlobalStyle />
-				{children}
+				<StyledComponentsRegistry>
+					<GlobalStyle />
+					{children}
+				</StyledComponentsRegistry>
 			</body>
 		</html>
 	);
