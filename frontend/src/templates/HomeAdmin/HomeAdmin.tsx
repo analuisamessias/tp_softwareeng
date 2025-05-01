@@ -74,10 +74,13 @@ export const HomeAdmin = () => {
 					</TextSection>
 
 					<FiltersContainer>
-						<AddButton>
-							<MdAddBox size={20} />
-							Adicionar Disciplina
-						</AddButton>
+						<a href="/adddisciplines">
+							<AddButton>
+								<MdAddBox size={20} />
+								Adicionar Disciplina
+							</AddButton>
+						</a>
+
 						<FilterSelect>
 							<option>Dias</option>
 							<option>Segunda-feira</option>
