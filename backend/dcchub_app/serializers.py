@@ -57,3 +57,8 @@ class DisciplinaSerializer(serializers.ModelSerializer):
     class Meta:
         model = Disciplina
         fields = '__all__'
+
+class ProfessorSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = User
+        fields = ['id', 'nome']
