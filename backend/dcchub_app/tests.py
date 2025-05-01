@@ -115,4 +115,25 @@ class EndpointsTestCase(TestCase):
         response = self.client.post('/api/professores/', novo_professor, format='json')
         self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)
 
+    def test_atualizar_professor_como_superuser(self):
+        """Apenas admin pode atualizar professor"""
+        self.client.force_authenticate(user=self.superuser)
+        
+        professor_atualizado = {
+            'nome': 'Professor Atualizado'
+        }
+        
+        response = self.client.put(f'/api/professores/{self.professor.id}/', professor_atualizado, format='json')
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.professor.refresh_from_db()
+        self.assertEqual(self.professor.nome, 'Professor Atualizado')
+
+    def test_deletar_professor_como_superuser(self):
+        """Apenas admin pode deletar professor"""
+        self.client.force_authenticate(user=self.superuser)
+        
+        response = self.client.delete(f'/api/professores/{self.professor.id}/')
+        self.assertEqual(response.status_code, status.HTTP_204_NO_CONTENT)
+        self.assertFalse(Professor.objects.filter(id=self.professor.id).exists())    
+
 # Create your tests here.
