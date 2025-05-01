@@ -17,6 +17,7 @@ export type Disciplina = {
 	horario: string;
 	professor: string;
 	sala: string;
+	turma: string;
 };
 
 type DisciplinesTableProps = {
@@ -43,6 +44,7 @@ export const DisciplinesTable = ({ disciplinas }: DisciplinesTableProps) => {
 							<TableCell>{disciplina.nome}</TableCell>
 							<TableCell>{disciplina.codigo}</TableCell>
 							<TableCell>{disciplina.horario}</TableCell>
+							<TableCell>{disciplina.turma}</TableCell>
 							<TableCell>{disciplina.professor}</TableCell>
 							<TableCell>{disciplina.sala}</TableCell>
 							<TableCell>

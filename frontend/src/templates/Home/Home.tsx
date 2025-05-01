@@ -26,6 +26,7 @@ export const Home = ({}: HomeProps) => {
 			codigo: 'DCC094',
 			horario: '2a e 4a - 14:55/16:35',
 			professor: 'Marco Tulio de Oliveira',
+			turma: 'TW',
 			sala: 'CAD 3 - 210',
 		},
 		{
@@ -34,6 +35,7 @@ export const Home = ({}: HomeProps) => {
 			codigo: 'DCC205',
 			horario: '3a e 5a - 14:55/16:35',
 			professor: 'Wagner Meira',
+			turma: 'TN',
 			sala: 'CAD 3 - 213',
 		},
 		{
@@ -42,6 +44,7 @@ export const Home = ({}: HomeProps) => {
 			codigo: 'DCC099',
 			horario: '2a e 4a - 17:00/18:40',
 			professor: 'Michele Nogueira',
+			turma: 'TN',
 			sala: 'ICEx - 2013',
 		},
 		{
@@ -50,6 +53,7 @@ export const Home = ({}: HomeProps) => {
 			codigo: 'DCC114',
 			horario: '2a e 6a - 19:00/20:40',
 			professor: 'Marcos Augusto Menezes',
+			turma: 'TA1',
 			sala: 'CAD 3 - 310',
 		},
 	];

@@ -1,6 +1,6 @@
 'use client';
-import { AddDiscipline } from '../../templates/AddDiscipline/AddDiscipline';
+import { DisciplinesForm } from '../../components/DisciplinesForm/DisciplinesForm';
 
-export default function DisciplinesFormPage() {
-	return <AddDiscipline children={''} />;
+export default function AddDisciplinePage() {
+	return <DisciplinesForm />;
 }
