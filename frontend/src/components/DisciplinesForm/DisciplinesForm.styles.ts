@@ -2,11 +2,18 @@ import styled from 'styled-components';
 import { css } from 'styled-components';
 import media from 'styled-media-query';
 
+export const InfoDisciplines = styled.div`
+	margin-top: 40px;
+	overflow-x: auto;
+	margin-left: 40px;
+`;
+
 export const Title = styled.h1`
 	color: #0f2849;
 	font-size: 1.6rem;
 	margin-bottom: 1.5rem;
-	text-align: center;
+	text-align: start;
+	margin-left: 40px;
 	font-family: 'Barlow', sans-serif;
 	font-weight: 700;
 `;
@@ -14,8 +21,42 @@ export const Title = styled.h1`
 export const Form = styled.form`
 	display: flex;
 	flex-direction: column;
+	width: 800px;
+	gap: 1rem;
+	margin-left: 40px;
+`;
+
+export const FormCod = styled.div`
+	display: flex;
+	flex-direction: column;
 	width: 400px;
 	gap: 1rem;
+	margin-top: 20px;
+	margin-left: 40px;
+`;
+
+export const FormDias = styled.div`
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	gap: 1rem;
+	width: 300px;
+	margin-left: 40px;
+	margin-top: 20px;
+	${media.lessThan('medium')`
+		width: 100%;
+	`}
+`;
+
+export const FormSala = styled.div`
+	display: grid;
+	flex-direction: column;
+	gap: 1rem;
+	width: 400px;
+	margin-left: 40px;
+	margin-top: 20px;
+	${media.lessThan('medium')`
+		width: 100%;
+	`}
 `;
 
 export const Input = styled.input`
@@ -60,6 +101,8 @@ export const ButtonSave = styled.button`
 	cursor: pointer;
 	font-size: 14px;
 	transition: background-color 0.3s;
+	margin-top: 20px;
+	margin-left: 70px;
 
 	&:hover {
 		background-color: #173765;
@@ -76,6 +119,8 @@ export const ButtonCancel = styled.button`
 	cursor: pointer;
 	font-size: 14px;
 	transition: background-color 0.3s;
+	margin-top: 20px;
+	margin-left: 70px;
 
 	&:hover {
 		background-color: #e2e2e2;

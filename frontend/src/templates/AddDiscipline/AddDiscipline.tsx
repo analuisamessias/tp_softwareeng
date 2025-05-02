@@ -34,7 +34,12 @@ export const AddDiscipline = ({ children }: AddDisciplineProps) => {
 	return (
 		<Wrapper>
 			<TopBarContainer>
-				<a href="/home">
+				<a href="/">
+					<ExitButton>
+						<IoMdClose size={32} />
+					</ExitButton>
+				</a>
+				<a href="/homeadmin">
 					<MenuButton>
 						<FaHome size={32} />
 					</MenuButton>
@@ -46,7 +51,7 @@ export const AddDiscipline = ({ children }: AddDisciplineProps) => {
 				</a>
 			</TopBarContainer>
 			<ContentContainer>
-				<DisciplinesForm />
+				<DisciplinesForm disciplinas={[]} />
 				<ButtonSection>
 					<ButtonSave>SALVAR</ButtonSave>
 					<ButtonCancel>CANCELAR</ButtonCancel>
