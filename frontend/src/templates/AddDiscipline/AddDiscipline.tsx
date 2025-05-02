@@ -11,9 +11,9 @@ import {
 	ButtonCancel,
 } from '../../components/DisciplinesForm/DisciplinesForm.styles';
 
-interface AddDisciplineProps {
+type AddDisciplineProps = {
 	children: ReactNode;
-}
+};
 
 export const AddDiscipline = ({ children }: AddDisciplineProps) => {
 	return (
