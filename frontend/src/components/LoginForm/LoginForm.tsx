@@ -36,6 +36,7 @@ export const LoginForm = () => {
 			}
 			const data = await response.json();
 			localStorage.setItem('token', data.token);
+			localStorage.setItem('user', JSON.stringify(data.user));
 			router.push('/home');
 		} catch (err: any) {
 				setError(err.message || 'Erro ao fazer login');
