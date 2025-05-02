@@ -71,15 +71,15 @@ export const UserConfig = ({ children, onSave, onCancel, saveDisabled }: UserCon
 	return (
 		<Wrapper>
 			<TopBarContainer>
-				<a href="/">
-					<ExitButton onClick={handleLogout}>
-						<IoMdClose size={32} />
-					</ExitButton>
-				</a>
 				<a href={homeHref}>
 					<MenuButton>
 						<FaHome size={32} />
 					</MenuButton>
+				</a>
+				<a href="/">
+					<ExitButton onClick={handleLogout}>
+						<IoMdClose size={32} />
+					</ExitButton>
 				</a>
 			</TopBarContainer>
 			<ContentContainer>

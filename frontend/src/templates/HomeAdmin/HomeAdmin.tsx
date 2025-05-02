@@ -61,16 +61,16 @@ export const HomeAdmin = () => {
 
 	return (
 		<Wrapper>
-			<TopBarContainer>
-				<a href="/">
-					<ExitButton onClick={handleLogout}>
-						<IoMdClose size={32} />
-					</ExitButton>
-				</a>
+			<TopBarContainer>			
 				<a href="/userconfig">
 					<MenuButton>
 						<LuUserPen size={32} />
 					</MenuButton>
+				</a>
+				<a href="/">
+					<ExitButton onClick={handleLogout}>
+						<IoMdClose size={32} />
+					</ExitButton>
 				</a>
 			</TopBarContainer>
 

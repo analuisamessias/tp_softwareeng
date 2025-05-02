@@ -34,15 +34,15 @@ export const AddDiscipline = ({ children }: AddDisciplineProps) => {
 	return (
 		<Wrapper>
 			<TopBarContainer>
-				<a href="/">
-					<ExitButton onClick={handleLogout}>
-						<IoMdClose size={32} />
-					</ExitButton>
-				</a>
 				<a href="/home">
 					<MenuButton>
 						<FaHome size={32} />
 					</MenuButton>
+				</a>
+				<a href="/">
+					<ExitButton onClick={handleLogout}>
+						<IoMdClose size={32} />
+					</ExitButton>
 				</a>
 			</TopBarContainer>
 			<ContentContainer>
