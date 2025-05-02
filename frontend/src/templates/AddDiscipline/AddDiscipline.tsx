@@ -16,18 +16,33 @@ type AddDisciplineProps = {
 };
 
 export const AddDiscipline = ({ children }: AddDisciplineProps) => {
+	const handleLogout = async () => {
+		const token = localStorage.getItem('token');
+		if (token) {
+				await fetch('http://localhost:8000/api/auth/logout/', {
+						method: 'POST',
+						headers: {
+								'Authorization': `Bearer ${token}`,
+								'Content-Type': 'application/json',
+						},
+				});
+		}
+		localStorage.removeItem('token');
+		localStorage.removeItem('user');
+	};
+
 	return (
 		<Wrapper>
 			<TopBarContainer>
-				<a href="/">
-					<ExitButton>
-						<IoMdClose size={32} />
-					</ExitButton>
-				</a>
 				<a href="/home">
 					<MenuButton>
 						<FaHome size={32} />
 					</MenuButton>
+				</a>
+				<a href="/">
+					<ExitButton onClick={handleLogout}>
+						<IoMdClose size={32} />
+					</ExitButton>
 				</a>
 			</TopBarContainer>
 			<ContentContainer>

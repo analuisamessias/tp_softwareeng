@@ -22,24 +22,64 @@ import { FaUserCircle } from 'react-icons/fa';
 import { ExitButton, MenuButton } from '../../components/TopBar/TopBar.styles';
 import { IoMdClose } from 'react-icons/io';
 import { FaHome } from 'react-icons/fa';
+import { useRouter } from 'next/navigation';
+import React, { useEffect, useState } from 'react';
 
 type UserConfigProps = {
 	children: ReactNode;
+	onSave?: () => void;
+	onCancel?: () => void;
+	saveDisabled?: boolean;
 };
 
-export const UserConfig = ({ children }: UserConfigProps) => {
+export const UserConfig = ({ children, onSave, onCancel, saveDisabled }: UserConfigProps) => {
+	const router = useRouter();
+	const [homeHref, setHomeHref] = useState('/home');
+	
+	useEffect(() => {
+		try {
+				const userStr = localStorage.getItem('user');
+				if (userStr) {
+						const user = JSON.parse(userStr);
+						if (user.is_staff) {
+								setHomeHref('/homeadmin');
+						}
+				}
+		} catch {}
+	}, []);
+
+	const handleLogout = async () => {
+		const token = localStorage.getItem('token');
+		if (token) {
+				await fetch('http://localhost:8000/api/auth/logout/', {
+						method: 'POST',
+						headers: {
+								'Authorization': `Bearer ${token}`,
+								'Content-Type': 'application/json',
+						},
+				});
+		}
+		localStorage.removeItem('token');
+		localStorage.removeItem('user');
+	};
+
+	const handleCancelClick = () => {
+		if (onCancel) onCancel();
+		router.push('/');
+	};
+
 	return (
 		<Wrapper>
 			<TopBarContainer>
-				<a href="/">
-					<ExitButton>
-						<IoMdClose size={32} />
-					</ExitButton>
-				</a>
-				<a href="/home">
+				<a href={homeHref}>
 					<MenuButton>
 						<FaHome size={32} />
 					</MenuButton>
+				</a>
+				<a href="/">
+					<ExitButton onClick={handleLogout}>
+						<IoMdClose size={32} />
+					</ExitButton>
 				</a>
 			</TopBarContainer>
 			<ContentContainer>
@@ -56,8 +96,8 @@ export const UserConfig = ({ children }: UserConfigProps) => {
 				<RightSection>
 					{children}
 					<ButtonSection>
-						<ButtonSave>SALVAR</ButtonSave>
-						<ButtonCancel>CANCELAR</ButtonCancel>
+						<ButtonSave onClick={onSave} disabled={saveDisabled}>SALVAR</ButtonSave>
+						<ButtonCancel onClick={handleCancelClick}>CANCELAR</ButtonCancel>
 					</ButtonSection>
 				</RightSection>
 			</ContentContainer>
