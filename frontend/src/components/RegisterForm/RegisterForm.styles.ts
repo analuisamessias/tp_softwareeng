@@ -48,13 +48,13 @@ export const Input = styled.input`
 	padding: 0.5rem;
 	border: 1px solid #ccc;
 	border-radius: 6px;
-	font-size: 1rem;
+	font-size: 0.9rem;
 `;
 
 export const Button = styled.button`
 	background-color: #0f2849;
 	color: white;
-	padding: 0.75rem;
+	padding: 1rem;
 	border: none;
 	border-radius: 6px;
 	font-weight: bold;
@@ -71,6 +71,7 @@ export const LinkText = styled.a`
 	color: #0f2849;
 	text-align: center;
 	margin-top: 0.5rem;
+	margin-bottom: 0.4rem;
 	text-decoration: underline;
 	cursor: pointer;
 	font-weight: bold;

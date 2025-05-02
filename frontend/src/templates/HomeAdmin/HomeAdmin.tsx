@@ -10,15 +10,15 @@ import {
 	FiltersContainer,
 	TextSection,
 	FilterSelect,
-} from './Home.styles';
+	AddButton,
+} from './HomeAdmin.styles';
 import { ExitButton, MenuButton } from '../../components/TopBar/TopBar.styles';
-import { DisciplinesTable } from '../../components/DisciplinesTable/DisciplinesTable';
+import { DisciplinesTableAdmin } from '../../components/DisciplinesAdmin/DisciplinesAdmin';
 import { IoMdClose } from 'react-icons/io';
 import { LuUserPen } from 'react-icons/lu';
+import { MdAddBox } from 'react-icons/md';
 
-export type HomeProps = {};
-
-export const Home = ({}: HomeProps) => {
+export const HomeAdmin = () => {
 	const disciplinas = [
 		{
 			id: 1,
@@ -41,28 +41,6 @@ export const Home = ({}: HomeProps) => {
 			professor: 'Wagner Meira',
 			turma: 'TN',
 			sala: 'CAD 3 - 213',
-		},
-		{
-			id: 3,
-			nome: 'Cibersegurança',
-			codigo: 'DCC099',
-			dia: '2a e 4a',
-			inicio: '17:00',
-			fim: '18:40',
-			professor: 'Michele Nogueira',
-			turma: 'TN',
-			sala: 'ICEx - 2013',
-		},
-		{
-			id: 4,
-			nome: 'Introdução aos Sistemas Lógicos',
-			codigo: 'DCC114',
-			dia: '2a e 6a',
-			inicio: '19:00',
-			fim: '20:40',
-			professor: 'Marcos Augusto Menezes',
-			turma: 'TA1',
-			sala: 'CAD 3 - 310',
 		},
 	];
 
@@ -92,8 +70,8 @@ export const Home = ({}: HomeProps) => {
 
 					<TextSection>
 						<WelcomeText>
-							Seja bem vindo(a)! <br /> Pesquise por uma disciplina, professor
-							ou use os filtros.
+							Olá, administrador! <br /> Você pode editar ou remover disciplinas
+							da lista abaixo.
 						</WelcomeText>
 
 						<SearchSection>
@@ -102,6 +80,13 @@ export const Home = ({}: HomeProps) => {
 					</TextSection>
 
 					<FiltersContainer>
+						<a href="/createdisciplines">
+							<AddButton>
+								<MdAddBox size={20} />
+								Adicionar Disciplina
+							</AddButton>
+						</a>
+
 						<FilterSelect>
 							<option>Dias</option>
 							<option>Segunda-feira</option>
@@ -123,7 +108,7 @@ export const Home = ({}: HomeProps) => {
 					</FiltersContainer>
 				</LogoSection>
 
-				<DisciplinesTable disciplinas={disciplinas} />
+				<DisciplinesTableAdmin disciplinas={disciplinas} />
 			</ContentContainer>
 		</Wrapper>
 	);

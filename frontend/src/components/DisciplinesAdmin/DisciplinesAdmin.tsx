@@ -4,10 +4,12 @@ import {
 	StyledTable,
 	TableRow,
 	TableCell,
+	TableTitle,
 	TableNameColumns,
-	TableButton,
-} from './DisciplinesTable.styles';
-import { FaMapMarkerAlt } from 'react-icons/fa';
+	AdminButtonsContainer,
+	EditButton,
+	DeleteButton,
+} from './DisciplinesAdmin.styles';
 
 export type Disciplina = {
 	id: number;
@@ -16,16 +18,18 @@ export type Disciplina = {
 	dia: string;
 	inicio: string;
 	fim: string;
+	turma: string;
 	professor: string;
 	sala: string;
-	turma: string;
 };
 
-type DisciplinesTableProps = {
+type DisciplinesTableAdminProps = {
 	disciplinas: Disciplina[];
 };
 
-export const DisciplinesTable = ({ disciplinas }: DisciplinesTableProps) => {
+export const DisciplinesTableAdmin = ({
+	disciplinas,
+}: DisciplinesTableAdminProps) => {
 	return (
 		<TableContainer>
 			<StyledTable>
@@ -54,10 +58,10 @@ export const DisciplinesTable = ({ disciplinas }: DisciplinesTableProps) => {
 							<TableCell>{disciplina.professor}</TableCell>
 							<TableCell>{disciplina.sala}</TableCell>
 							<TableCell>
-								<TableButton>
-									<FaMapMarkerAlt size={16} />
-									Encontre a sala
-								</TableButton>
+								<AdminButtonsContainer>
+									<EditButton>Editar</EditButton>
+									<DeleteButton>Apagar</DeleteButton>
+								</AdminButtonsContainer>
 							</TableCell>
 						</TableRow>
 					))}

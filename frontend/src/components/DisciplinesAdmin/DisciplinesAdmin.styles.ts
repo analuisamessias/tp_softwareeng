@@ -24,7 +24,7 @@ export const TableRow = styled.tr`
 export const TableCell = styled.td`
 	padding: 10px 20px 10px 20px;
 	text-align: center;
-	font-size: 0.95rem;
+	font-size: 0.9rem;
 	font-weight: 100;
 	color: #000000;
 	font-family: sans-serif;
@@ -33,7 +33,7 @@ export const TableCell = styled.td`
 
 export const TableTitle = styled.div`
 	display: grid;
-	grid-template-columns: repeat(9, 1fr);
+	grid-template-columns: repeat(6, 1fr);
 	padding: 8px 0px 8px 0px;
 	background-color: transparent;
 	text-align: center;
@@ -52,22 +52,40 @@ export const TableNameColumns = styled.th`
 	font-family: sans-serif;
 `;
 
-export const TableButton = styled.button`
+export const AdminButtonsContainer = styled.div`
 	display: flex;
-	align-items: center;
+	gap: 8px;
 	justify-content: center;
-	gap: 6px;
-	padding: 8px 12px;
-	background-color: #0f2849;
-	color: #ffffff;
+`;
+
+export const EditButton = styled.button`
+	background-color: #173765;
+	color: white;
+	font-size: 14px;
+	font-weight: 600;
 	border: none;
-	border-radius: 8px;
+	border-radius: 4px;
+	padding: 6px 12px;
 	cursor: pointer;
-	font-size: 0.9rem;
-	font-weight: 500;
 	transition: background-color 0.3s;
 
 	&:hover {
-		background-color: #173765;
+		background-color: #0f2849;
+	}
+`;
+
+export const DeleteButton = styled.button`
+	background-color: #d9534f;
+	color: white;
+	font-size: 14px;
+	font-weight: 600;
+	border: none;
+	border-radius: 4px;
+	padding: 6px 12px;
+	cursor: pointer;
+	transition: background-color 0.3s;
+
+	&:hover {
+		background-color: #d90404;
 	}
 `;

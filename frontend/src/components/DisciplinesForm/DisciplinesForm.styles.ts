@@ -1,51 +1,6 @@
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
+import { css } from 'styled-components';
 import media from 'styled-media-query';
-
-export const Container = styled.div`
-	display: flex;
-	height: 100vh;
-	background-color: #f8f8f8;
-`;
-
-export const LeftSection = styled.div`
-	${({ theme }) => css`
-		width: 100%;
-		min-height: 80vh;
-		display: flex;
-		flex-direction: column;
-		justify-content: center;
-		align-items: center;
-		color: #ffffff;
-		padding: 5rem;
-		max-width: 500px;
-
-		${media.lessThan('medium')`
-      display: none;
-    `}
-	`}
-`;
-
-export const Logo = styled.img`
-	width: 200px;
-`;
-
-export const RightSection = styled.div`
-	${({ theme }) => css`
-		width: 100%;
-		display: flex;
-		min-height: 80vh;
-		flex-direction: column;
-		justify-content: center;
-		align-items: center;
-		padding: 2rem;
-		color: #e2e2e2;
-
-		div {
-			display: flex;
-			flex-direction: column;
-		}
-	`}
-`;
 
 export const Title = styled.h1`
 	color: #0f2849;
@@ -67,7 +22,7 @@ export const Input = styled.input`
 	padding: 0.5rem;
 	border: 1px solid #ccc;
 	border-radius: 6px;
-	font-size: 0.9rem;
+	font-size: 1rem;
 `;
 
 export const Button = styled.button`
@@ -83,28 +38,6 @@ export const Button = styled.button`
 	&:hover {
 		background-color: #1a3355;
 	}
-`;
-
-export const LinkText = styled.a`
-	font-size: 1rem;
-	color: #0f2849;
-	text-align: center;
-	margin-top: 0.5rem;
-	text-decoration: underline;
-	cursor: pointer;
-	font-weight: bold;
-
-	&:hover {
-		opacity: 0.8;
-	}
-`;
-
-export const PerfilIcon = styled.div`
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	margin-bottom: 1rem;
-	color: #c3c0c0;
 `;
 
 export const ButtonSection = styled.div`
