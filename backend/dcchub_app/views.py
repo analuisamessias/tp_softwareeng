@@ -10,6 +10,12 @@ from .serializers import AdminUserSerializer, UserSerializer, DisciplinaSerializ
 class IsAdminOrSuperUser(permissions.BasePermission):
     def has_permission(self, request, view):
         return request.user.is_authenticated and (request.user.is_staff or request.user.is_superuser)
+    
+class IsCurrentUser(permissions.BasePermission):
+    # Apenas o usuário autenticado pode acessar seus próprios dados
+
+    def has_object_permission(self, request, view, obj):
+        return request.user == obj
 
 class AdminUserViewSet(viewsets.ModelViewSet):
     queryset = User.objects.filter(is_staff=True)
@@ -24,7 +30,11 @@ class UserViewSet(viewsets.ModelViewSet):
         if self.action in ['create']:
             # Qualquer pessoa pode criar usuário, apenas admins têm acesso ao resto
             return []
-        return [IsAuthenticated()]
+        elif self.action in ['retrieve', 'update', 'partial_update', 'destroy']:
+            # Somente o próprio usuário ou admin pode acessar os dados do usuário
+            return [IsAuthenticated(), (IsCurrentUser|IsAdminUser)()]
+        else:
+            return [IsAuthenticated()]
 
 class DisciplinaFilter(django_filters.FilterSet):
     sala = django_filters.CharFilter(field_name='sala', lookup_expr='icontains')  # Filtro parcial para 'sala'
