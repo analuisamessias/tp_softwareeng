@@ -28,6 +28,7 @@ export const AddDiscipline = ({ children }: AddDisciplineProps) => {
 				});
 		}
 		localStorage.removeItem('token');
+		localStorage.removeItem('user');
 	};
 
 	return (

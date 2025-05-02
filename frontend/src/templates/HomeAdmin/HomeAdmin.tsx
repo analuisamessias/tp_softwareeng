@@ -31,6 +31,7 @@ export const HomeAdmin = () => {
 				});
 		}
 		localStorage.removeItem('token');
+		localStorage.removeItem('user');
 	};
 
 	const disciplinas = [
