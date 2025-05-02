@@ -23,6 +23,7 @@ import { ExitButton, MenuButton } from '../../components/TopBar/TopBar.styles';
 import { IoMdClose } from 'react-icons/io';
 import { FaHome } from 'react-icons/fa';
 import { useRouter } from 'next/navigation';
+import React, { useEffect, useState } from 'react';
 
 type UserConfigProps = {
 	children: ReactNode;
@@ -33,7 +34,20 @@ type UserConfigProps = {
 
 export const UserConfig = ({ children, onSave, onCancel, saveDisabled }: UserConfigProps) => {
 	const router = useRouter();
+	const [homeHref, setHomeHref] = useState('/home');
 	
+	useEffect(() => {
+		try {
+				const userStr = localStorage.getItem('user');
+				if (userStr) {
+						const user = JSON.parse(userStr);
+						if (user.is_staff) {
+								setHomeHref('/homeadmin');
+						}
+				}
+		} catch {}
+	}, []);
+
 	const handleLogout = async () => {
 		const token = localStorage.getItem('token');
 		if (token) {
@@ -46,6 +60,7 @@ export const UserConfig = ({ children, onSave, onCancel, saveDisabled }: UserCon
 				});
 		}
 		localStorage.removeItem('token');
+		localStorage.removeItem('user');
 	};
 
 	const handleCancelClick = () => {
@@ -61,7 +76,7 @@ export const UserConfig = ({ children, onSave, onCancel, saveDisabled }: UserCon
 						<IoMdClose size={32} />
 					</ExitButton>
 				</a>
-				<a href="/home">
+				<a href={homeHref}>
 					<MenuButton>
 						<FaHome size={32} />
 					</MenuButton>
