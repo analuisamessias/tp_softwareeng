@@ -1,0 +1,3 @@
+from .user_serializer import AdminUserSerializer, UserSerializer
+from .professor_serializer import ProfessorSerializer
+from .disciplina_serializer import DisciplinaSerializer

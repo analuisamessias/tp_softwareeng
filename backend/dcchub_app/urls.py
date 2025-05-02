@@ -1,6 +1,6 @@
 from django.urls import path, include
 from rest_framework.routers import DefaultRouter
-from .views import AdminUserViewSet, UserViewSet, DisciplinaViewSet, ProfessorViewSet
+from dcchub_app.views import AdminUserViewSet, UserViewSet, DisciplinaViewSet, ProfessorViewSet
 
 router = DefaultRouter()
 router.register(r'admin-users', AdminUserViewSet, basename='admin-users')

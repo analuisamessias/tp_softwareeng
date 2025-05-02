@@ -14,12 +14,10 @@ class UserManager(BaseUserManager):
     def create_superuser(self, email, password=None, **extra_fields):
         extra_fields.setdefault('is_staff', True)
         extra_fields.setdefault('is_superuser', True)
-
         return self.create_user(email, password, **extra_fields)
 
 class User(AbstractBaseUser, PermissionsMixin):
     id = models.AutoField(primary_key=True)
-    # password = models.CharField(max_length=128)  # A senha será criptografada
     email = models.EmailField(unique=True)
     nome = models.CharField(max_length=255)
     photo = models.ImageField(upload_to='profile_photos/', null=True, blank=True)
@@ -35,24 +33,3 @@ class User(AbstractBaseUser, PermissionsMixin):
 
     def __str__(self):
         return self.email
-    
-
-class Professor(models.Model):
-    id = models.AutoField(primary_key=True)
-    nome = models.CharField(max_length=100)
-    def __str__(self):
-        return f"{self.nome}"
-
-class Disciplina(models.Model):
-    id = models.AutoField(primary_key=True)
-    codigo = models.CharField(max_length=10)
-    nome = models.CharField(max_length=100)
-    turma = models.CharField(max_length=10)
-    sala = models.CharField(max_length=10)
-    inicio = models.CharField(max_length=5)  # formato HH:MM
-    fim = models.CharField(max_length=5)  # formato HH:MM
-    dias = models.CharField(max_length=50)  # "Segunda,Quarta,Sexta"
-    professor = models.ForeignKey(Professor, on_delete=models.SET_NULL, null=True, blank=True)
-
-    def __str__(self):
-        return f"{self.codigo} - {self.nome} (Turma {self.turma})"
