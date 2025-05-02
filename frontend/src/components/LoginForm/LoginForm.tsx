@@ -1,7 +1,7 @@
 'use client';
 
 import { Auth } from '../../templates/Auth/Auth';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { Title, Form, Input, Button, LinkText } from './LoginForm.styles';
 
@@ -10,6 +10,13 @@ export const LoginForm = () => {
 	const [password, setPassword] = useState('');
 	const [error, setError] = useState('');
 	const router = useRouter();
+
+	useEffect(() => {
+		const token = localStorage.getItem('token');
+		if (token) {
+				router.push('/home');
+		}
+	}, [router]);
 
 	const handleSubmit = async (e: React.FormEvent) => {
 		e.preventDefault();
