@@ -19,6 +19,20 @@ import { LuUserPen } from 'react-icons/lu';
 import { MdAddBox } from 'react-icons/md';
 
 export const HomeAdmin = () => {
+	const handleLogout = async () => {
+		const token = localStorage.getItem('token');
+		if (token) {
+				await fetch('http://localhost:8000/api/auth/logout/', {
+						method: 'POST',
+						headers: {
+								'Authorization': `Bearer ${token}`,
+								'Content-Type': 'application/json',
+						},
+				});
+		}
+		localStorage.removeItem('token');
+	};
+
 	const disciplinas = [
 		{
 			id: 1,
@@ -48,7 +62,7 @@ export const HomeAdmin = () => {
 		<Wrapper>
 			<TopBarContainer>
 				<a href="/">
-					<ExitButton>
+					<ExitButton onClick={handleLogout}>
 						<IoMdClose size={32} />
 					</ExitButton>
 				</a>
