@@ -22,12 +22,18 @@ import { FaUserCircle } from 'react-icons/fa';
 import { ExitButton, MenuButton } from '../../components/TopBar/TopBar.styles';
 import { IoMdClose } from 'react-icons/io';
 import { FaHome } from 'react-icons/fa';
+import { useRouter } from 'next/navigation';
 
 type UserConfigProps = {
 	children: ReactNode;
+	onSave?: () => void;
+	onCancel?: () => void;
+	saveDisabled?: boolean;
 };
 
-export const UserConfig = ({ children }: UserConfigProps) => {
+export const UserConfig = ({ children, onSave, onCancel, saveDisabled }: UserConfigProps) => {
+	const router = useRouter();
+	
 	const handleLogout = async () => {
 		const token = localStorage.getItem('token');
 		if (token) {
@@ -40,6 +46,11 @@ export const UserConfig = ({ children }: UserConfigProps) => {
 				});
 		}
 		localStorage.removeItem('token');
+	};
+
+	const handleCancelClick = () => {
+		if (onCancel) onCancel();
+		router.push('/');
 	};
 
 	return (
@@ -70,8 +81,8 @@ export const UserConfig = ({ children }: UserConfigProps) => {
 				<RightSection>
 					{children}
 					<ButtonSection>
-						<ButtonSave>SALVAR</ButtonSave>
-						<ButtonCancel>CANCELAR</ButtonCancel>
+						<ButtonSave onClick={onSave} disabled={saveDisabled}>SALVAR</ButtonSave>
+						<ButtonCancel onClick={handleCancelClick}>CANCELAR</ButtonCancel>
 					</ButtonSection>
 				</RightSection>
 			</ContentContainer>
