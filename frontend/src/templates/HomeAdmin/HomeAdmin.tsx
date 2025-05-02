@@ -80,7 +80,7 @@ export const HomeAdmin = () => {
 					</TextSection>
 
 					<FiltersContainer>
-						<a href="/createdisciplines">
+						<a href="/edit/discipline">
 							<AddButton>
 								<MdAddBox size={20} />
 								Adicionar Disciplina
