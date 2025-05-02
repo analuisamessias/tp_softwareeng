@@ -14,15 +14,15 @@ class IsAdminOrSuperUser(permissions.BasePermission):
 class AdminUserViewSet(viewsets.ModelViewSet):
     queryset = User.objects.filter(is_staff=True)
     serializer_class = AdminUserSerializer
-    permission_classes = [IsAdminOrSuperUser]
+    permission_classes = [IsAuthenticated, IsAdminOrSuperUser]
 
 class UserViewSet(viewsets.ModelViewSet):
     queryset = User.objects.filter(is_staff=False)
     serializer_class = UserSerializer
     
     def get_permissions(self):
-        if self.action in ['create', 'list']:
-            # Qualquer pessoa pode criar usuário ou listar usuários
+        if self.action in ['create']:
+            # Qualquer pessoa pode criar usuário, apenas admins têm acesso ao resto
             return []
         return [IsAuthenticated()]
 
@@ -43,10 +43,10 @@ class DisciplinaViewSet(viewsets.ModelViewSet):
     
     def get_permissions(self):
         if self.action in ['list', 'retrieve']:
-            # Qualquer pessoa pode listar ou ver detalhes de disciplinas
-            return []
+            # Qualquer pessoa autenticada pode listar ou ver detalhes de disciplinas
+            return [IsAuthenticated()]
         # Somente admin pode criar, atualizar, excluir
-        return [IsAdminUser()]
+        return [IsAuthenticated(), IsAdminUser()]
     
 class ProfessorViewSet(viewsets.ModelViewSet):
     queryset = Professor.objects.all()
@@ -54,10 +54,10 @@ class ProfessorViewSet(viewsets.ModelViewSet):
 
     def get_permissions(self):
         if self.action in ['list', 'retrieve']:
-            # Qualquer pessoa pode listar ou ver detalhes de professores
-            return []
+            # Qualquer pessoa autenticada pode listar ou ver detalhes de professores
+            return [IsAuthenticated()]
         # Somente admin pode criar, atualizar, excluir
-        return [IsAdminUser()]
+        return [IsAuthenticated(), IsAdminUser()]
     
 def test_view(request):
     return JsonResponse({"message": "API funcionando!"})
