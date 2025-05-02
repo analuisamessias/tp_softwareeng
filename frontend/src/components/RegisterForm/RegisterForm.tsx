@@ -39,7 +39,23 @@ export const RegisterForm = () => {
 				throw new Error(errorData.message || 'Erro ao registrar');
 			}
 			const data = await response.json();
-			localStorage.setItem('token', data.token);
+			localStorage.setItem('user', JSON.stringify(data));
+
+			const credentials = btoa(`${email}:${password}`);
+			const loginResponse = await fetch('http://localhost:8000/api/auth/login/', {
+				method: 'POST',
+				headers: {
+						'Authorization': `Basic ${credentials}`,
+						'Content-Type': 'application/json',
+				},
+			});
+			if (!loginResponse.ok) {
+				const errorData = await loginResponse.json();
+				throw new Error(errorData.message || 'Erro ao fazer login');
+			}
+			const loginData = await loginResponse.json();
+			localStorage.setItem('token', loginData.token);
+
 			router.push('/home');
 		} catch (err: any) {
 				setError(err.message || 'Erro ao registrar');
