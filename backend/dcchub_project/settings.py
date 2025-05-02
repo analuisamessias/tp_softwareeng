@@ -11,6 +11,8 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
 """
 
 from pathlib import Path
+from datetime import timedelta
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -41,6 +43,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
+    'knox',
     'dcchub_app',
     'django_filters'
 ]
@@ -74,6 +77,39 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'dcchub_project.wsgi.application'
 
+
+# Django REST Framework settings
+# https://www.django-rest-framework.org/api-guide/settings/
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'knox.auth.TokenAuthentication', # Autenticação Padrão 
+        'rest_framework.authentication.SessionAuthentication', # Autenticação para Django Admin e API Explorer do DRF
+        'rest_framework.authentication.BasicAuthentication', # Autenticação base para views de login
+    ],
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.IsAuthenticated',
+    ],
+}
+
+# django-rest-knox settings | Settings for Token Authentication
+# https://jazzband.github.io/django-rest-knox/settings/
+
+KNOX_TOKEN_MODEL = 'knox.AuthToken'
+
+REST_KNOX = {
+#   'SECURE_HASH_ALGORITHM': 'hashlib.sha512',
+#   'AUTH_TOKEN_CHARACTER_LENGTH': 64,
+  'TOKEN_TTL': timedelta(hours=10),
+  'USER_SERIALIZER': 'dcchub_app.serializers.UserSerializer',
+#   'TOKEN_LIMIT_PER_USER': None,
+  'AUTO_REFRESH': True,
+#   'AUTO_REFRESH_MAX_TTL': None,
+  'MIN_REFRESH_INTERVAL': 60,
+  'AUTH_HEADER_PREFIX': 'Bearer',
+#   'EXPIRY_DATETIME_FORMAT': api_settings.DATETIME_FORMAT,
+  'TOKEN_MODEL': 'knox.AuthToken',
+}
 
 # Database
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases

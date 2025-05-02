@@ -19,8 +19,9 @@ from django.urls import path, include
 #from dcchub_app.views import test_view 
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('api/', include('dcchub_app.urls')),
-    path('api-auth/', include('rest_framework.urls')),
+    path('admin/', admin.site.urls), # URLs do Django admin
+    path('api/auth/', include('knox.urls')), # URLs para autenticação com Knox
+    path('api/', include('dcchub_app.urls')), # URLs da aplicação dcchub_app
+    path('browse/', include('rest_framework.urls')), # URLs para o navegador de API do DRF
    # path('test/', test_view, name='test'),
 ]
