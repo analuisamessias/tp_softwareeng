@@ -24,16 +24,22 @@ export const HomeAdmin = () => {
 			id: 1,
 			nome: 'Engenharia de Software',
 			codigo: 'DCC094',
-			horario: '2a e 4a - 14:55/16:35',
+			dia: '2a e 4a',
+			inicio: '17:00',
+			fim: '18:40',
 			professor: 'Marco Tulio de Oliveira',
+			turma: 'TW',
 			sala: 'CAD 3 - 210',
 		},
 		{
 			id: 2,
 			nome: 'Estruturas de Dados',
 			codigo: 'DCC205',
-			horario: '3a e 5a - 14:55/16:35',
+			dia: '3a e 5a',
+			inicio: '14:55',
+			fim: '16:35',
 			professor: 'Wagner Meira',
+			turma: 'TN',
 			sala: 'CAD 3 - 213',
 		},
 	];
@@ -74,7 +80,7 @@ export const HomeAdmin = () => {
 					</TextSection>
 
 					<FiltersContainer>
-						<a href="/adddisciplines">
+						<a href="/createdisciplines">
 							<AddButton>
 								<MdAddBox size={20} />
 								Adicionar Disciplina

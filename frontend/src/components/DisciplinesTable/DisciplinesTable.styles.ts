@@ -33,7 +33,7 @@ export const TableCell = styled.td`
 
 export const TableTitle = styled.div`
 	display: grid;
-	grid-template-columns: repeat(6, 1fr);
+	grid-template-columns: repeat(9, 1fr);
 	padding: 8px 0px 8px 0px;
 	background-color: transparent;
 	text-align: center;

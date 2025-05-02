@@ -24,7 +24,7 @@ export const TableRow = styled.tr`
 export const TableCell = styled.td`
 	padding: 10px 20px 10px 20px;
 	text-align: center;
-	font-size: 0.95rem;
+	font-size: 0.9rem;
 	font-weight: 100;
 	color: #000000;
 	font-family: sans-serif;
