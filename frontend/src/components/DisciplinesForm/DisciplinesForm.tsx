@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
     Title,
     Form,
@@ -25,17 +25,40 @@ type DisciplinesFormProps = {
     loading?: boolean;
     error?: string;
     success?: string;
+    initialValues?: {
+        codigo: string;
+        nome: string;
+        turma: string;
+        sala: string;
+        inicio: string;
+        fim: string;
+        dias: string;
+        professor: number;
+    };
 };
 
-export const DisciplinesForm = ({ onSubmit, loading, error, success }: DisciplinesFormProps) => {
-    const [codigo, setCodigo] = useState('');
-    const [nome, setNome] = useState('');
-    const [turma, setTurma] = useState('');
-    const [sala, setSala] = useState('');
-    const [inicio, setInicio] = useState('');
-    const [fim, setFim] = useState('');
-    const [dias, setDias] = useState('');
-    const [professor, setProfessor] = useState<number | ''>('');
+export const DisciplinesForm = ({ onSubmit, loading, error, success, initialValues }: DisciplinesFormProps) => {
+    const [codigo, setCodigo] = useState(initialValues?.codigo || '');
+    const [nome, setNome] = useState(initialValues?.nome || '');
+    const [turma, setTurma] = useState(initialValues?.turma || '');
+    const [sala, setSala] = useState(initialValues?.sala || '');
+    const [inicio, setInicio] = useState(initialValues?.inicio || '');
+    const [fim, setFim] = useState(initialValues?.fim || '');
+    const [dias, setDias] = useState(initialValues?.dias || '');
+    const [professor, setProfessor] = useState<number | ''>(initialValues?.professor || '');
+
+    useEffect(() => {
+        if (initialValues) {
+            setCodigo(initialValues.codigo || '');
+            setNome(initialValues.nome || '');
+            setTurma(initialValues.turma || '');
+            setSala(initialValues.sala || '');
+            setInicio(initialValues.inicio || '');
+            setFim(initialValues.fim || '');
+            setDias(initialValues.dias || '');
+            setProfessor(initialValues.professor || '');
+        }
+    }, [initialValues]);
 
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
@@ -47,7 +70,7 @@ export const DisciplinesForm = ({ onSubmit, loading, error, success }: Disciplin
             inicio,
             fim,
             dias,
-            professor: typeof professor === 'string' ? Number(professor) : professor,
+            professor: professor === '' ? undefined : Number(professor),
         });
     };
 
