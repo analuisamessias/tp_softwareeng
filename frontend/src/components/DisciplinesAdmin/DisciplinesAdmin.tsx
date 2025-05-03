@@ -15,11 +15,11 @@ export type Disciplina = {
 	id: number;
 	nome: string;
 	codigo: string;
-	dia: string;
+	dias: string;
 	inicio: string;
 	fim: string;
 	turma: string;
-	professor: string;
+	nome_professor: string;
 	sala: string;
 };
 
@@ -51,11 +51,11 @@ export const DisciplinesTableAdmin = ({
 						<TableRow key={disciplina.id}>
 							<TableCell>{disciplina.nome}</TableCell>
 							<TableCell>{disciplina.codigo}</TableCell>
-							<TableCell>{disciplina.dia}</TableCell>
+							<TableCell>{disciplina.dias}</TableCell>
 							<TableCell>{disciplina.inicio}</TableCell>
 							<TableCell>{disciplina.fim}</TableCell>
 							<TableCell>{disciplina.turma}</TableCell>
-							<TableCell>{disciplina.professor}</TableCell>
+							<TableCell>{disciplina.nome_professor}</TableCell>
 							<TableCell>{disciplina.sala}</TableCell>
 							<TableCell>
 								<AdminButtonsContainer>
