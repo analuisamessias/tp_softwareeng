@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { TopBarContainer, ExitButton, MenuButton } from '../../components/TopBar/TopBar.styles';
-import { Wrapper, ContentContainer } from './AddDiscipline.styles';
+import { Wrapper, ContentContainer } from '../AddDiscipline/AddDiscipline.styles';
 import { IoMdClose } from 'react-icons/io';
 import { FaHome } from 'react-icons/fa';
 import { DisciplinesForm } from '../../components/DisciplinesForm/DisciplinesForm';
@@ -10,47 +10,71 @@ import {
     ButtonCancel,
 } from '../../components/DisciplinesForm/DisciplinesForm.styles';
 
-export const AddDiscipline = () => {
-    const [loading, setLoading] = useState(false);
+export const EditDiscipline = ({ id }: { id: string }) => {
+    const [initialValues, setInitialValues] = useState<any>(null);
+    const [loading, setLoading] = useState(true);
     const [error, setError] = useState('');
     const [success, setSuccess] = useState('');
 
-    const handleLogout = async () => {
-        const token = localStorage.getItem('token');
-        if (token) {
-            await fetch('http://localhost:8000/api/auth/logout/', {
-                method: 'POST',
-                headers: {
-                    'Authorization': `Bearer ${token}`,
-                    'Content-Type': 'application/json',
-                },
-            });
-        }
-        localStorage.removeItem('token');
-        localStorage.removeItem('user');
-    };
+    useEffect(() => {
+        const fetchDisciplina = async () => {
+            setLoading(true);
+            setError('');
+            try {
+                const token = localStorage.getItem('token');
+                const response = await fetch(`http://localhost:8000/api/disciplines/${id}/`, {
+					headers: {
+                        'Authorization': `Bearer ${token}`,
+                        'Content-Type': 'application/json',
+                    },
+                });
+                if (!response.ok) throw new Error('Erro ao buscar disciplina');
+                const data = await response.json();
+                setInitialValues(data);
+            } catch (err: any) {
+                setError(err.message || 'Erro ao buscar disciplina');
+            } finally {
+                setLoading(false);
+            }
+        };
+        fetchDisciplina();
+    }, [id]);
 
-    const handleCreateDiscipline = async (disciplina: any) => {
+    const handleSubmit = async (disciplina: any) => {
         setError('');
         setSuccess('');
         setLoading(true);
         try {
             const token = localStorage.getItem('token');
-            const response = await fetch('http://localhost:8000/api/disciplines/', {
-                method: 'POST',
+            const body: any = {
+              codigo: disciplina.codigo,
+              nome: disciplina.nome,
+              turma: disciplina.turma,
+              sala: disciplina.sala,
+              inicio: disciplina.inicio,
+              fim: disciplina.fim,
+              dias: disciplina.dias,
+            };
+
+            if (disciplina.professor !== '' && disciplina.professor !== null && disciplina.professor !== undefined) {
+              body.professor = disciplina.professor;
+            }
+
+            const response = await fetch(`http://localhost:8000/api/disciplines/${id}/`, {
+                method: 'PATCH',
                 headers: {
                     'Authorization': `Bearer ${token}`,
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify(disciplina),
+                body: JSON.stringify(body),
             });
             if (!response.ok) {
                 const errorData = await response.json();
-                throw new Error(errorData.message || 'Erro ao criar disciplina');
+                throw new Error(errorData.message || 'Erro ao editar disciplina');
             }
-            setSuccess('Disciplina criada com sucesso!');
+            setSuccess('Disciplina editada com sucesso!');
         } catch (err: any) {
-            setError(err.message || 'Erro ao criar disciplina');
+            setError(err.message || 'Erro ao editar disciplina');
         } finally {
             setLoading(false);
         }
@@ -69,17 +93,18 @@ export const AddDiscipline = () => {
                     </MenuButton>
                 </a>
                 <a href="/">
-                    <ExitButton onClick={handleLogout}>
+                    <ExitButton>
                         <IoMdClose size={32} />
                     </ExitButton>
                 </a>
             </TopBarContainer>
             <ContentContainer>
                 <DisciplinesForm
-                    onSubmit={handleCreateDiscipline}
+                    onSubmit={handleSubmit}
                     loading={loading}
                     error={error}
                     success={success}
+                    initialValues={initialValues}
                 />
                 <ButtonSection>
                     <ButtonSave
