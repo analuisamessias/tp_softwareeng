@@ -11,6 +11,7 @@ export const Perfil = () => {
     const [senha, setSenha] = useState('');
     const [originalNome, setOriginalNome] = useState('');
     const [originalEmail, setOriginalEmail] = useState('');
+    const [isStaff, setIsStaff] = useState(false);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState('');
     const [success, setSuccess] = useState('');
@@ -22,11 +23,13 @@ export const Perfil = () => {
             const userStr = localStorage.getItem('user');
             if (!userStr) throw new Error('Usuário não encontrado no localStorage');
             const user = JSON.parse(userStr);
+
             setId(user.id);
             setNome(user.nome);
             setEmail(user.email);
             setOriginalNome(user.nome);
             setOriginalEmail(user.email);
+            setIsStaff(user.is_staff === true);
         } catch (err: any) {
             setError(err.message || 'Erro ao carregar usuário');
         } finally {
@@ -51,7 +54,9 @@ export const Perfil = () => {
             if (email !== originalEmail) body.email = email;
             if (senha.length > 0) body.password = senha;
 
-            const response = await fetch(`http://localhost:8000/api/users/${id}/`, {
+            let user_type = isStaff ? 'admin-users' : 'users';
+
+            const response = await fetch(`http://localhost:8000/api/${user_type}/${id}/`, {
                 method: 'PATCH',
                 headers: {
                     'Authorization': `Bearer ${token}`,
