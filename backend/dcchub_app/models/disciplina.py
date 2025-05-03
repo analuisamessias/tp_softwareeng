@@ -3,10 +3,10 @@ from .professor import Professor
 
 class Disciplina(models.Model):
     id = models.AutoField(primary_key=True)
-    codigo = models.CharField(max_length=10)
+    codigo = models.CharField(max_length=15)
     nome = models.CharField(max_length=100)
-    turma = models.CharField(max_length=10)
-    sala = models.CharField(max_length=10)
+    turma = models.CharField(max_length=15)
+    sala = models.CharField(max_length=50)
     inicio = models.CharField(max_length=5)  # formato HH:MM
     fim = models.CharField(max_length=5)  # formato HH:MM
     dias = models.CharField(max_length=50)  # "Segunda,Quarta,Sexta"
