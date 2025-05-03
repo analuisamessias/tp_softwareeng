@@ -65,7 +65,7 @@ export const UserConfig = ({ children, onSave, onCancel, saveDisabled }: UserCon
 
 	const handleCancelClick = () => {
 		if (onCancel) onCancel();
-		router.push('/');
+		router.push(homeHref);
 	};
 
 	return (
