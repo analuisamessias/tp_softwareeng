@@ -1,15 +1,15 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { TopBarContainer } from '../../components/TopBar/TopBar.styles';
 import {
-	Wrapper,
-	ContentContainer,
-	LogoSection,
-	WelcomeText,
-	SearchSection,
-	SearchInput,
-	FiltersContainer,
-	TextSection,
-	FilterSelect,
+    Wrapper,
+    ContentContainer,
+    LogoSection,
+    WelcomeText,
+    SearchSection,
+    SearchInput,
+    FiltersContainer,
+    TextSection,
+    FilterSelect,
 } from './Home.styles';
 import { ExitButton, MenuButton } from '../../components/TopBar/TopBar.styles';
 import { DisciplinesTable } from '../../components/DisciplinesTable/DisciplinesTable';
@@ -19,127 +19,131 @@ import { LuUserPen } from 'react-icons/lu';
 export type HomeProps = {};
 
 export const Home = ({}: HomeProps) => {
-	const handleLogout = async () => {
-			const token = localStorage.getItem('token');
-			if (token) {
-					await fetch('http://localhost:8000/api/auth/logout/', {
-							method: 'POST',
-							headers: {
-									'Authorization': `Bearer ${token}`,
-									'Content-Type': 'application/json',
-							},
-					});
-			}
-			localStorage.removeItem('token');
-			localStorage.removeItem('user');
-	};
-		
-	const disciplinas = [
-		{
-			id: 1,
-			nome: 'Engenharia de Software',
-			codigo: 'DCC094',
-			dia: '2a e 4a',
-			inicio: '17:00',
-			fim: '18:40',
-			professor: 'Marco Tulio de Oliveira',
-			turma: 'TW',
-			sala: 'CAD 3 - 210',
-		},
-		{
-			id: 2,
-			nome: 'Estruturas de Dados',
-			codigo: 'DCC205',
-			dia: '3a e 5a',
-			inicio: '14:55',
-			fim: '16:35',
-			professor: 'Wagner Meira',
-			turma: 'TN',
-			sala: 'CAD 3 - 213',
-		},
-		{
-			id: 3,
-			nome: 'Cibersegurança',
-			codigo: 'DCC099',
-			dia: '2a e 4a',
-			inicio: '17:00',
-			fim: '18:40',
-			professor: 'Michele Nogueira',
-			turma: 'TN',
-			sala: 'ICEx - 2013',
-		},
-		{
-			id: 4,
-			nome: 'Introdução aos Sistemas Lógicos',
-			codigo: 'DCC114',
-			dia: '2a e 6a',
-			inicio: '19:00',
-			fim: '20:40',
-			professor: 'Marcos Augusto Menezes',
-			turma: 'TA1',
-			sala: 'CAD 3 - 310',
-		},
-	];
+    const [disciplinas, setDisciplinas] = useState<any[]>([]);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState('');
+    const [search, setSearch] = useState('');
+    const [filtroDia, setFiltroDia] = useState('');
+    const [filtroSala, setFiltroSala] = useState('');
 
-	return (
-		<Wrapper>
-			<TopBarContainer>
-				<a href="/userconfig">
-					<MenuButton>
-						<LuUserPen size={32} />
-					</MenuButton>
-				</a>
-				<a href="/">
-					<ExitButton onClick={handleLogout}>
-						<IoMdClose size={32} />
-					</ExitButton>
-				</a>
-			</TopBarContainer>
+    const handleLogout = async () => {
+        const token = localStorage.getItem('token');
+        if (token) {
+            await fetch('http://localhost:8000/api/auth/logout/', {
+                method: 'POST',
+                headers: {
+                    'Authorization': `Bearer ${token}`,
+                    'Content-Type': 'application/json',
+                },
+            });
+        }
+        localStorage.removeItem('token');
+        localStorage.removeItem('user');
+    };
 
-			<ContentContainer>
-				<LogoSection>
-					<img
-						src="/logodcchub.svg"
-						alt="Logo DCC Hub"
-						width="200"
-						height="150"
-					/>
+    useEffect(() => {
+        const fetchDisciplinas = async () => {
+            setLoading(true);
+            setError('');
+            try {
+                const token = localStorage.getItem('token');
+                const response = await fetch('http://localhost:8000/api/disciplines/', {
+                    headers: {
+                        'Authorization': `Bearer ${token}`,
+                        'Content-Type': 'application/json',
+                    },
+                });
+                if (!response.ok) throw new Error('Erro ao buscar disciplinas');
+                const data = await response.json();
+                setDisciplinas(data);
+            } catch (err: any) {
+                setError(err.message || 'Erro ao buscar disciplinas');
+            } finally {
+                setLoading(false);
+            }
+        };
+        fetchDisciplinas();
+    }, []);
 
-					<TextSection>
-						<WelcomeText>
-							Seja bem vindo(a)! <br /> Pesquise por uma disciplina, professor
-							ou use os filtros.
-						</WelcomeText>
+    const disciplinasFiltradas = disciplinas.filter((disciplina) => {
+        const searchLower = search.toLowerCase();
+        const nomeMatch = disciplina.nome.toLowerCase().includes(searchLower);
+        const profMatch = disciplina.nome_professor?.toLowerCase().includes(searchLower);
 
-						<SearchSection>
-							<SearchInput placeholder="Pesquisar..." />
-						</SearchSection>
-					</TextSection>
+        const diaMatch = filtroDia ? disciplina.dias.toLowerCase().includes(filtroDia.toLowerCase()) : true;
+        const salaMatch = filtroSala ? disciplina.sala.toLowerCase().includes(filtroSala.toLowerCase()) : true;
 
-					<FiltersContainer>
-						<FilterSelect>
-							<option>Dias</option>
-							<option>Segunda-feira</option>
-							<option>Terça-feira</option>
-							<option>Quarta-feira</option>
-							<option>Quinta-feira</option>
-							<option>Sexta-feira</option>
-							<option>Sábado</option>
-						</FilterSelect>
+        return (nomeMatch || profMatch) && diaMatch && salaMatch;
+    });
 
-						<FilterSelect>
-							<option>Prédio</option>
-							<option>CAD 1</option>
-							<option>CAD 2</option>
-							<option>CAD 3</option>
-							<option>ICEx</option>
-							<option>FAFICH</option>
-						</FilterSelect>
-					</FiltersContainer>
-				</LogoSection>
+    return (
+        <Wrapper>
+            <TopBarContainer>
+                <a href="/userconfig">
+                    <MenuButton>
+                        <LuUserPen size={32} />
+                    </MenuButton>
+                </a>
+                <a href="/">
+                    <ExitButton onClick={handleLogout}>
+                        <IoMdClose size={32} />
+                    </ExitButton>
+                </a>
+            </TopBarContainer>
 
-				<DisciplinesTable disciplinas={disciplinas} />
-			</ContentContainer>
-		</Wrapper>
-	);
+            <ContentContainer>
+                <LogoSection>
+                    <img
+                        src="/logodcchub.svg"
+                        alt="Logo DCC Hub"
+                        width="200"
+                        height="150"
+                    />
+
+                    <TextSection>
+                        <WelcomeText>
+                            Seja bem vindo(a)! <br /> Pesquise por uma disciplina, professor
+                            ou use os filtros.
+                        </WelcomeText>
+
+                        <SearchSection>
+                            <SearchInput
+                                placeholder="Pesquisar..."
+                                value={search}
+                                onChange={e => setSearch(e.target.value)}
+                            />
+                        </SearchSection>
+                    </TextSection>
+
+                    <FiltersContainer>
+                        <FilterSelect value={filtroDia} onChange={e => setFiltroDia(e.target.value)}>
+                            <option value="">Dias</option>
+                            <option value="2a">2a</option>
+                            <option value="3a">3a</option>
+                            <option value="4a">4a</option>
+                            <option value="5a">5a</option>
+                            <option value="6a">6a</option>
+                        </FilterSelect>
+
+                        <FilterSelect value={filtroSala} onChange={e => setFiltroSala(e.target.value)}>
+                            <option value="">Prédio</option>
+                            <option value="CAD1">CAD1</option>
+                            <option value="CAD2">CAD2</option>
+                            <option value="CAD3">CAD3</option>
+                            <option value="ICEx">ICEx</option>
+                            <option value="FAFICH">FAFICH</option>
+                        </FilterSelect>
+                    </FiltersContainer>
+                </LogoSection>
+
+                {loading ? (
+                    <p>Carregando disciplinas...</p>
+                ) : error ? (
+                    <p style={{ color: 'red' }}>{error}</p>
+                ) : (
+                    <DisciplinesTable disciplinas={disciplinasFiltradas} />
+                )}
+            </ContentContainer>
+        </Wrapper>
+    );
 };
