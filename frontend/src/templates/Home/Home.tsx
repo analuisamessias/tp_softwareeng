@@ -15,6 +15,7 @@ import { ExitButton, MenuButton } from '../../components/TopBar/TopBar.styles';
 import { DisciplinesTable } from '../../components/DisciplinesTable/DisciplinesTable';
 import { IoMdClose } from 'react-icons/io';
 import { LuUserPen } from 'react-icons/lu';
+import { useRouter } from 'next/navigation';
 
 export type HomeProps = {};
 
@@ -25,8 +26,10 @@ export const Home = ({}: HomeProps) => {
     const [search, setSearch] = useState('');
     const [filtroDia, setFiltroDia] = useState('');
     const [filtroSala, setFiltroSala] = useState('');
+    const router = useRouter();
 
     const handleLogout = async () => {
+      console.log("logging out");
         const token = localStorage.getItem('token');
         if (token) {
             await fetch('http://localhost:8000/api/auth/logout/', {
@@ -39,6 +42,8 @@ export const Home = ({}: HomeProps) => {
         }
         localStorage.removeItem('token');
         localStorage.removeItem('user');
+        router.push('/');
+
     };
 
     useEffect(() => {
@@ -85,7 +90,7 @@ export const Home = ({}: HomeProps) => {
                     </MenuButton>
                 </a>
                 <a href="/">
-                    <ExitButton onClick={handleLogout}>
+                    <ExitButton onClick={(e) => { e.preventDefault(); handleLogout(); }}>
                         <IoMdClose size={32} />
                     </ExitButton>
                 </a>

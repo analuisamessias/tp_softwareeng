@@ -9,11 +9,14 @@ import {
     ButtonSave,
     ButtonCancel,
 } from '../../components/DisciplinesForm/DisciplinesForm.styles';
+import { useRouter } from 'next/navigation';
 
 export const AddDiscipline = () => {
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState('');
     const [success, setSuccess] = useState('');
+    const router = useRouter();
+
 
     const handleLogout = async () => {
         const token = localStorage.getItem('token');
@@ -28,6 +31,7 @@ export const AddDiscipline = () => {
         }
         localStorage.removeItem('token');
         localStorage.removeItem('user');
+        router.push('/');
     };
 
     const handleCreateDiscipline = async (disciplina: any) => {
@@ -69,7 +73,7 @@ export const AddDiscipline = () => {
                     </MenuButton>
                 </a>
                 <a href="/">
-                    <ExitButton onClick={handleLogout}>
+                    <ExitButton onClick={(e) => { e.preventDefault(); handleLogout(); }}>
                         <IoMdClose size={32} />
                     </ExitButton>
                 </a>

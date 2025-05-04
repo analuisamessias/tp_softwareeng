@@ -17,6 +17,7 @@ import { DisciplinesTableAdmin } from '../../components/DisciplinesAdmin/Discipl
 import { IoMdClose } from 'react-icons/io';
 import { LuUserPen } from 'react-icons/lu';
 import { MdAddBox } from 'react-icons/md';
+import { useRouter } from 'next/navigation';
 
 export const HomeAdmin = () => {
     const [disciplinas, setDisciplinas] = useState<any[]>([]);
@@ -25,6 +26,7 @@ export const HomeAdmin = () => {
     const [search, setSearch] = useState('');
     const [filtroDia, setFiltroDia] = useState('');
     const [filtroSala, setFiltroSala] = useState('');
+    const router = useRouter();
 
     const handleLogout = async () => {
         const token = localStorage.getItem('token');
@@ -39,6 +41,7 @@ export const HomeAdmin = () => {
         }
         localStorage.removeItem('token');
         localStorage.removeItem('user');
+        router.push('/');
     };
 
     useEffect(() => {
@@ -85,7 +88,7 @@ export const HomeAdmin = () => {
                     </MenuButton>
                 </a>
                 <a href="/">
-                    <ExitButton onClick={handleLogout}>
+                    <ExitButton onClick={(e) => { e.preventDefault(); handleLogout(); }}>
                         <IoMdClose size={32} />
                     </ExitButton>
                 </a>

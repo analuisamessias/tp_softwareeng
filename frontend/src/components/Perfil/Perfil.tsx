@@ -70,6 +70,26 @@ export const Perfil = () => {
             }
             const updatedUser = await response.json();
 						localStorage.setItem('user', JSON.stringify(updatedUser));
+
+            if (senha.length > 0) {
+              const credentials = btoa(`${email}:${senha}`);
+              const loginResponse = await fetch('http://localhost:8000/api/auth/login/', {
+                method: 'POST',
+                headers: {
+                    'Authorization': `Basic ${credentials}`,
+                    'Content-Type': 'application/json',
+                },
+              });
+              if (!loginResponse.ok) {
+                const errorData = await loginResponse.json();
+                throw new Error(errorData.message || 'Erro ao fazer login');
+              }
+              const loginData = await loginResponse.json();
+              console.log(localStorage.getItem('token'));
+              console.log(loginData.token);
+              localStorage.setItem('token', loginData.token);
+            }
+
 						setNome(updatedUser.nome);
 						setEmail(updatedUser.email);
 						setOriginalNome(updatedUser.nome);

@@ -61,6 +61,7 @@ export const UserConfig = ({ children, onSave, onCancel, saveDisabled }: UserCon
 		}
 		localStorage.removeItem('token');
 		localStorage.removeItem('user');
+		router.push('/');
 	};
 
 	const handleCancelClick = () => {
@@ -77,7 +78,7 @@ export const UserConfig = ({ children, onSave, onCancel, saveDisabled }: UserCon
 					</MenuButton>
 				</a>
 				<a href="/">
-					<ExitButton onClick={handleLogout}>
+					<ExitButton onClick={(e) => { e.preventDefault(); handleLogout(); }}>
 						<IoMdClose size={32} />
 					</ExitButton>
 				</a>
