@@ -85,8 +85,6 @@ export const Perfil = () => {
                 throw new Error(errorData.message || 'Erro ao fazer login');
               }
               const loginData = await loginResponse.json();
-              console.log(localStorage.getItem('token'));
-              console.log(loginData.token);
               localStorage.setItem('token', loginData.token);
             }
 

@@ -29,7 +29,6 @@ export const Home = ({}: HomeProps) => {
     const router = useRouter();
 
     const handleLogout = async () => {
-      console.log("logging out");
         const token = localStorage.getItem('token');
         if (token) {
             await fetch('http://localhost:8000/api/auth/logout/', {
