@@ -16,8 +16,7 @@ export const AddDiscipline = () => {
     const [error, setError] = useState('');
     const [success, setSuccess] = useState('');
     const router = useRouter();
-
-
+    
     const handleLogout = async () => {
         const token = localStorage.getItem('token');
         if (token) {

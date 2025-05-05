@@ -4,7 +4,7 @@ from ..models import Professor
 from ..serializers import ProfessorSerializer
 
 class ProfessorViewSet(viewsets.ModelViewSet):
-    queryset = Professor.objects.all()
+    queryset = Professor.objects.all().order_by('nome')
     serializer_class = ProfessorSerializer
 
     def get_permissions(self):
