@@ -87,4 +87,23 @@ Como por exemplo, uma lista única que possui: disciplina, turma, horário, prof
      - Vincular usuário a disciplina [Matheus]
      - Criar endpoint para listar todas as disciplinas [Matheus]
      - Implementar filtros para busca por disciplina, professor e horário [Náthally]
-     
+
+### Diagramas
+
+#### Diagrama de Classes dos Models do Back-end
+
+![Diagrama de Classes dos Models do Back-end](./docs/Diagrama%20de%20Classes.png)
+
+#### Diagrama de Pacotes do Back-end
+
+![Diagrama de Pacotes do Back-end](./docs/Diagrama%20de%20Pacotes.png)
+
+### Relatório de Contribuições
+
+![Painel de Insights do Github](./docs/insights_panel.png)
+
+### Extra
+
+#### Quadro Kanban - Github Projects
+
+![Github Projects Kanban](./docs/kanban.png)
